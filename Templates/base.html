@@ -11,15 +11,16 @@
     integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" 
     crossorigin="anonymous">
     <!--- Der Titel des Browsertabs kommt hier hin-->
-    <title>Document</title>
+    <title>{% block title %} {% endblock %}</title>
 </head>
 <body>
     <div class="container">
+        {% for message in get_flashed_messages() %}
         <!-- Hier kommen Fehlermeldungen rein-->
-        <div class="alert altert-danger"></div>
+            <div class="alert altert-danger">{{ message }}</div>
+        {% endfor %}
     </div>
-    
-    <!-- Chatbot Ausgabe-->
+   {% block chatbot_ausgabe %} {% endblock %}
 
     <!-- Der Rest vom Schützenfest -->
 
