@@ -3,6 +3,7 @@
 
 from flask import Flask, render_template, request, flash
 from chatbot import Chatbot
+from file_handling import file_handling
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'Pa$$w0rd'
@@ -10,17 +11,13 @@ app.config['SECRET_KEY'] = 'Pa$$w0rd'
 
 @app.route('/', methods=('GET', 'POST'))
 def index():
+    file = file_handling("answers.json")
     chatbot_label = "Hallo, worüber wollen Sie sprechen?"
 
 
 # Listen
-    zufallsantworten = ["Oh wirklich...",
-                        "Interessant",
-                        "Das kann man so sehen",
-                        "Ich verstehe"]
-    reaktionen = {"hallo": "aber hallo",
-                  "geht": "was verstehst du darunter?",
-                  "schmeckt": "Ich habe keinen Geschmackssinn."}
+    zufallsantworten = file.zufallsantworten
+    reaktionen = file.reaktionen
 
 
 # Logik
